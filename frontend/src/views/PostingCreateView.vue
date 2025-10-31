@@ -48,6 +48,30 @@ const handleSubmit = () => {
       </div>
 
       <div>
+        <label for="company" class="block text-sm font-medium text-gray-300 mb-1">
+          회사명
+        </label>
+        <input 
+          type="text" 
+          id="company" 
+          v-model="form.company"
+          class="w-full px-3 py-2 border border-neutral-700 bg-neutral-900 rounded-md shadow-sm text-white focus:outline-none focus:ring-brand-purple focus:border-brand-purple"
+        />
+      </div>
+
+      <div>
+        <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
+          마감일
+        </label>
+        <input 
+          type="date" 
+          id="deadline" 
+          v-model="form.deadline"
+          class="w-full px-3 py-2 border border-neutral-700 bg-neutral-900 rounded-md shadow-sm text-white focus:outline-none focus:ring-brand-purple focus:border-brand-purple"
+        />
+      </div>
+
+      <div>
         <label for="description" class="block text-sm font-medium text-gray-300 mb-1">
           세부 내용
         </label>

@@ -23,13 +23,27 @@ onMounted(() => {
 <template>
   <div class="max-w-4xl mx-auto">
     <div v-if="postingDetail">
-      <a 
-        :href="postingDetail.originalLink" 
-        target="_blank" 
-        class="inline-block py-3 px-6 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-purple-dark transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-purple-light"
-      >
-        원본 공고 보러가기
-      </a>
+        <h1 class="text-4xl font-bold mb-2 text-white">{{ postingDetail.title }}</h1>
+        <h3 class="text-2xl text-gray-400 mb-6">{{ postingDetail.company }}</h3>
+      
+        <img 
+            :src="postingDetail.imageUrl" 
+            alt="Posting Image" 
+            class="w-full rounded-lg shadow-md mb-8"
+        >
+      
+        <div class="bg-neutral-800 p-6 rounded-lg mb-8">
+            <p class="text-gray-300 leading-relaxed whitespace-pre-wrap">
+            {{ postingDetail.description }}
+            </p>
+        </div>
+        <a 
+            :href="postingDetail.originalLink" 
+            target="_blank" 
+            class="inline-block py-3 px-6 bg-brand-purple text-white font-bold rounded-lg shadow-md hover:bg-brand-purple-dark transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-purple-light"
+        >
+            원본 공고 보러가기
+        </a>
     </div>
     
     </div>
