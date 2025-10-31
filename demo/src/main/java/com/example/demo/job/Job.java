@@ -26,11 +26,15 @@ public class Job {
     @Column(nullable = false)
     private String url;
 
-    private LocalDate dueDate; // 마감일
+    private LocalDateTim dueDate; // 마감일
+
+    @Column(columnDefinition = "TEXT") // TEXT: 긴 글을 저장 (varchar(255)보다 큼)
+    private String description; // 상세 설명 (추가)
+
+    @Column(length = 50) // varchar(50)
+    private String jobType; // 모집 유형 (추가. 예: "신입", "인턴", "계약")
 
     // @Enumerated: Enum(열거형) 타입을 DB에 저장합니다.
-    // (아직 JobType을 안 만들었으니, 이 부분은 잠시 주석처리 할게요.)
-    // private String jobType; // "JUNIOR" 또는 "INTERN"
 
     private LocalDateTime createdAt; // 공고 등록일
 
@@ -81,11 +85,11 @@ public class Job {
         this.url = url;
     }
 
-    public LocalDate getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -95,5 +99,22 @@ public class Job {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
     }
 }
