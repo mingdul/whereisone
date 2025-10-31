@@ -1,0 +1,4 @@
+# JetBrains IDEs
+.idea/
+
+# ... other ignores like node_modules, .env, etc.
