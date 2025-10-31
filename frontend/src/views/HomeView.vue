@@ -4,7 +4,7 @@ import PostingCard from '../components/PostingCard.vue'
 import type { Posting } from '../type/types'
 
 const postings = ref<Posting[]>([
-    { id: 1, title: 'Vue.js 프론트엔드 개발자', company: 'Awesome Tech', deadline: '2025-11-30', imageUrl: 'https://via.placeholder.com/400x180.png?text=Vue+Job' },
+    { id: 1, title: 'Vue.js 프론트엔드 개발자ㅇㅇㅇ', company: 'Awesome Tech', deadline: '2025-11-30', imageUrl: 'https://via.placeholder.com/400x180.png?text=Vue+Job' },
     { id: 2, title: 'Spring Boot 백엔드 엔지니어', company: 'Solid Backend', deadline: '2025-11-25', imageUrl: 'https://via.placeholder.com/400x180.png?text=Spring+Job' },
     { id: 3, title: '풀스택 개발자 (Vue + Spring)', company: 'Fullstack Inc.', deadline: '2025-12-05', imageUrl: 'https://via.placeholder.com/400x180.png?text=Fullstack' }
 ]);
