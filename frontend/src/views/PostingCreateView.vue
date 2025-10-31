@@ -15,7 +15,9 @@ const form = ref<JobForm>({
   companyName: '',
   jobTitle: '',
   url: '',
-  dueDate: ''
+  dueDate: '',
+  description: '',
+  jobType: '신입'
 })
 
 // handleSubmit은 Store의 createJob 액션을 호출
@@ -71,14 +73,43 @@ const handleSubmit = async () => {
 
       <div>
         <label for="dueDate" class="block text-sm font-medium text-gray-300 mb-1">
-          마감일
+          마감 일시
         </label>
         <input 
-          type="date" 
+          type="datetime-local" 
           id="dueDate" 
           v-model="form.dueDate"
           class="w-full px-3 py-2 border border-neutral-700 bg-neutral-900 rounded-md shadow-sm text-white focus:outline-none focus:ring-brand-purple focus:border-brand-purple"
         />
+      </div>
+
+      <div>
+        <label for="jobType" class="block text-sm font-medium text-gray-300 mb-1">
+          직무 유형
+        </label>
+        <select 
+          id="jobType" 
+          v-model="form.jobType"
+          class="w-full px-3 py-2 border border-neutral-700 bg-neutral-900 rounded-md shadow-sm text-white focus:outline-none focus:ring-brand-purple focus:border-brand-purple"
+        >
+          <option>신입</option>
+          <option>경력</option>
+          <option>인턴</option>
+          <option>계약직</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-300 mb-1">
+          상세 내용
+        </label>
+        <textarea 
+          id="description" 
+          v-model="form.description" 
+          rows="5"
+          required
+          class="w-full px-3 py-2 border border-neutral-700 bg-neutral-900 rounded-md shadow-sm text-white focus:outline-none focus:ring-brand-purple focus:border-brand-purple"
+        ></textarea>
       </div>
       
       <button 
