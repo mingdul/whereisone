@@ -26,7 +26,7 @@ public class Job {
     @Column(nullable = false)
     private String url;
 
-    private LocalDateTim dueDate; // 마감일
+    private LocalDateTime dueDate; // 마감일
 
     @Column(columnDefinition = "TEXT") // TEXT: 긴 글을 저장 (varchar(255)보다 큼)
     private String description; // 상세 설명 (추가)

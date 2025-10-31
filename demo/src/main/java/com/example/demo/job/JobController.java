@@ -2,6 +2,7 @@ package com.example.demo.job; // job 패키지
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException; // <-- 상세 조회를 위해 임포트 추가!
 
 import java.util.List;
 
@@ -31,12 +32,21 @@ public class JobController {
         return jobRepository.save(job);
     }
 
-    // --- 3. 모든 공고 조회 API (Read) ---
+    // --- 모든 공고 조회 API (Read - PostCard 목록용) ---
     // GET /api/jobs
     @GetMapping
     public List<Job> getAllJobs() {
         // jobRepository.findAll(): DB에 있는 모든 Job을 리스트(List)로 가져옵니다.
         return jobRepository.findAll();
+    }
+
+    //Read - Detail 페이지용
+    @GetMapping("/{id}")
+    public Job getJobById(@PathVariable Long id) {
+        // jobRepository.findById(): 해당 id의 Job을 찾습니다.
+        // .orElseThrow(): 만약 해당 id의 공고가 없으면 "404 Not Found" 에러를 자동으로 발생시킵니다.
+        return jobRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job not found"));
     }
 
     // --- 4. 공고 삭제 API (Delete) ---
