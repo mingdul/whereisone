@@ -15,7 +15,12 @@ const emit = defineEmits<{
   <div class="bg-neutral-800 rounded-lg overflow-hidden transition-colors duration-300 hover:bg-neutral-700">
     
     <div class="p-5">
-      <h3 class="text-xl font-bold mb-2 truncate text-white">{{ job.jobTitle }}</h3>
+      
+      <RouterLink :to="`/posting/${job.id}`">
+        <h3 classC="text-xl font-bold mb-2 truncate text-white hover:text-brand-purple-light transition-colors">
+          {{ job.jobTitle }}
+        </h3>
+      </RouterLink>
       
       <p class="text-gray-400 mb-3">{{ job.companyName }}</p>
       
