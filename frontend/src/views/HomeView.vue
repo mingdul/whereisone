@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia' // 👈 반응성 유지를 위해
+import { useJobStore } from '../stores/jobStore' // 👈 Store 임포트
 import PostingCard from '../components/PostingCard.vue'
-import type { Posting } from '../type/types'
 
-const postings = ref<Posting[]>([
-    { id: 1, title: 'Vue.js 프론트엔드 개발자ㅇㅇㅇ', company: 'Awesome Tech', deadline: '2025-11-30', imageUrl: 'https://via.placeholder.com/400x180.png?text=Vue+Job' },
-    { id: 2, title: 'Spring Boot 백엔드 엔지니어', company: 'Solid Backend', deadline: '2025-11-25', imageUrl: 'https://via.placeholder.com/400x180.png?text=Spring+Job' },
-    { id: 3, title: '풀스택 개발자 (Vue + Spring)', company: 'Fullstack Inc.', deadline: '2025-12-05', imageUrl: 'https://via.placeholder.com/400x180.png?text=Fullstack' }
-]);
+// Store 사용
+const jobStore = useJobStore()
+
+// State (반응성 유지)
+const { jobs, loading } = storeToRefs(jobStore)
+
+// Actions
+const { fetchJobs, deleteJob } = jobStore
+
+// 컴포넌트 마운트 시 데이터 로드
+onMounted(() => {
+  fetchJobs()
+})
 </script>
 
 <template>
@@ -15,11 +24,8 @@ const postings = ref<Posting[]>([
     <h1 class="text-3xl font-bold mb-6 text-white">모집 공고</h1>
     
     <div class="flex flex-wrap gap-4 mb-8 p-4 bg-neutral-800 rounded-lg">
-      <button class="px-4 py-2 bg-neutral-700 text-gray-200 rounded-md hover:bg-neutral-600 transition-colors">
+       <button class="px-4 py-2 bg-neutral-700 text-gray-200 rounded-md hover:bg-neutral-600 transition-colors">
         마감일순
-      </button>
-      <button class="px-4 py-2 bg-neutral-700 text-gray-200 rounded-md hover:bg-neutral-600 transition-colors">
-        좋아요순
       </button>
       <input
         type="text"
@@ -28,12 +34,16 @@ const postings = ref<Posting[]>([
       />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div v-if="loading" class="text-center py-10">
+      <p class="text-xl">데이터를 불러오는 중입니다...</p>
+    </div>
+
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <PostingCard
-        v-for="posting in postings"
-        :key="posting.id"
-        :posting="posting"
-      />
+        v-for="job in jobs"
+        :key="job.id"
+        :job="job"
+        @delete-job="deleteJob" />
     </div>
   </div>
 </template>
