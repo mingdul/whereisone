@@ -7,14 +7,10 @@ import { useJobStore } from '../stores/jobStore'
 const route = useRoute()
 const jobStore = useJobStore()
 
-// State
 const { currentJob, loadingDetail } = storeToRefs(jobStore)
-
-// Actions
 const { fetchJobById } = jobStore
 
 onMounted(() => {
-  // URL 파라미터에서 ID를 가져와 Store의 액션 호출
   fetchJobById(route.params.id as string)
 })
 </script>
@@ -26,6 +22,10 @@ onMounted(() => {
     </div>
 
     <div v-else-if="currentJob">
+      <span class="inline-block bg-brand-purple text-white text-sm font-semibold px-3 py-1 rounded-full mb-4">
+        {{ currentJob.jobType }}
+      </span>
+
       <h1 class="text-4xl font-bold mb-2 text-white">{{ currentJob.jobTitle }}</h1>
       <h3 class="text-2xl text-gray-400 mb-6">{{ currentJob.companyName }}</h3>
       
